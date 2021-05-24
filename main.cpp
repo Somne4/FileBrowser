@@ -14,7 +14,7 @@ int main()
 
     QString path;
     cout << "Enter the path to the folder: " << Qt::endl;
-    cin.readLineInto(&path, 35);
+    cin.readLineInto(&path, 30);
 
     if(!path.isEmpty())
     {
@@ -23,5 +23,7 @@ int main()
         c->setStrategy(p);
         c->Browse(path);
     }
+    delete p;
+    delete c;
     return 0;
 }

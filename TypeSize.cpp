@@ -61,7 +61,7 @@ void TypeSize::PrintOperator(const QMap<QString, qint64>& TypeList, const QList<
     QTextStream cout(stdout);
     for (auto p : TypePercent)
     {
-        cout << qSetFieldWidth(35) <<   "." + p.second << qSetFieldWidth(10) << TypeList.value(p.second) / 1024 << qSetFieldWidth(10) << "KB";
+        cout << qSetFieldWidth(30) <<   "." + p.second << qSetFieldWidth(10) << TypeList.value(p.second) / 1024 << qSetFieldWidth(10) << "KB";
         if (p.first == -10)
         {
             cout << qSetFieldWidth(10) << "< 0.01 %" << Qt::endl;
