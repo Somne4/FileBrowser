@@ -9,9 +9,12 @@ CONFIG -= app_bundle
 
 SOURCES += \
         Context.cpp \
+        FileBrowserDataModel.cpp \
+        FileSize.cpp \
         FolderSize.cpp \
         TypeSize.cpp \
-        main.cpp
+        main.cpp \
+        mainwindow.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -21,6 +24,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Browser.h \
     Context.h \
+    FileBrowserDataModel.h \
     FileSize.h \
     FolderSize.h \
-    TypeSize.h
+    TypeSize.h \
+    mainwindow.h
+
+FORMS += \
+    mainwindow.ui
