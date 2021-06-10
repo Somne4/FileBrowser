@@ -12,11 +12,8 @@ void Context::Browse(const QString& path)//алгоритм стратегии
 
 void Context::setStrategy(Browser* strategy)
 {
-    delete b;
     b = strategy;
 }
 
 Context::~Context()
-{
-    delete b;
-}
+{}

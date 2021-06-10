@@ -19,6 +19,7 @@ int main()
     if(!path.isEmpty())
     {
         c->Browse(path);
+        delete p;
         p = new TypeSize();
         c->setStrategy(p);
         c->Browse(path);
