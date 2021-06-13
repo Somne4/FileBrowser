@@ -72,7 +72,7 @@ void FolderSize::PrintOperator(const QMap<QString, qint64>& FolderType, const QL
     }
 }
 
-void FolderSize::Browse(const QString& path)
+QList<SomeData> FolderSize::Browse(const QString& path)
 {
     auto FolderList = getFolderSize(path);
     auto SumSize = FileSize::getSumSize(FolderList);

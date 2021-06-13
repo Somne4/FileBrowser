@@ -77,7 +77,7 @@ void TypeSize::PrintOperator(const QMap<QString, qint64>& TypeList, const QList<
 }
 
 
-void TypeSize::Browse(const QString& path)
+QList<SomeData> TypeSize::Browse(const QString& path)
 {
     QMap<QString, qint64> TypeList;
     getFileType(path, TypeList);

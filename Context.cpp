@@ -4,7 +4,7 @@ Context::Context(Browser* strategy) :
     b(strategy) {}
 
 
-void Context::Browse(const QString& path)//алгоритм стратегии
+QList<SomeData> Context::Browse(const QString& path)//алгоритм стратегии
 {
     if (b)
     b->Browse(path);

@@ -13,7 +13,7 @@ private:
 public:
     explicit TypeSize() {};
     virtual ~TypeSize() {};
-    void Browse(const QString& path) override;
+    QList<SomeData> Browse(const QString& path) override;
 };
 
 #endif // TYPESIZE_H
