@@ -7,7 +7,7 @@ class Context // вызов класса Browser
 private:
     Browser *b;
 public:
-    Context();
+    Context() = default;
     explicit Context(Browser* strategy);
     ~Context();
     QList<SomeData> Browse(const QString& path);
