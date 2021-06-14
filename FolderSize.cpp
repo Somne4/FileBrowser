@@ -57,28 +57,25 @@ QList<QPair<double, QString>> FolderSize::Sorting(const QMap<QString, double>& F
     return res;
 }
 
-void FolderSize::PrintOperator(const QMap<QString, qint64>& FolderType, const QList<QPair<double, QString> >& FolderPercent)
-{
-    QTextStream cout(stdout);
-    for (auto p : FolderPercent)
-    {
-        cout << qSetFieldWidth(30) << p.second << qSetFieldWidth(10)  << FolderType.value(p.second) / 1024 << qSetFieldWidth(10) << "KB";
-        if (p.first == -10)
-        {
-            cout << qSetFieldWidth(10) << "< 0.01 %" << Qt::endl;
-        }
-        else
-            cout << qSetFieldWidth(10) << QString::number(p.first, 'f', 2).append(" %") << Qt::endl;
-    }
-}
 
 QList<SomeData> FolderSize::Browse(const QString& path)
 {
+    QList<SomeData> data;
     auto FolderList = getFolderSize(path);
     auto SumSize = FileSize::getSumSize(FolderList);
     auto percent = getListPercents(SumSize, FolderList);
     auto sorting = Sorting(percent);
-    PrintOperator(FolderList, sorting);
+    for (auto x : sorting)
+    {
+        if (x.first == -10)
+        {
+            data.append(SomeData(x.second, QString::number(FolderList.value(x.second)), QString("< 0.01 %")));
+        } else
+        {
+            data.append(SomeData(x.second, QString::number(FolderList.value(x.second)), QString::number(x.first, 'f', 2).append(" %")));
+        }
+    }
+    return data;
 }
 
 

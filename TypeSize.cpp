@@ -56,33 +56,23 @@ QList<QPair<double, QString>> TypeSize::Sorting(const QMap<QString, double>& Typ
     return res;
 }
 
-void TypeSize::PrintOperator(const QMap<QString, qint64>& TypeList, const QList<QPair<double, QString>> TypePercent)
-{
-    QTextStream cout(stdout);
-    for (auto p : TypePercent)
-    {
-        cout << qSetFieldWidth(30) <<   "." + p.second << qSetFieldWidth(10) << TypeList.value(p.second) / 1024 << qSetFieldWidth(10) << "KB";
-        if (p.first == -10)
-        {
-            cout << qSetFieldWidth(10) << "< 0.01 %" << Qt::endl;
-        }
-        else
-            cout << qSetFieldWidth(10) << QString::number(p.first, 'f', 2).append(" %") << Qt::endl;
-    }
-    if (TypePercent.isEmpty())
-    {
-        return;
-    }
-   cout.reset();
-}
-
-
 QList<SomeData> TypeSize::Browse(const QString& path)
 {
+    QList<SomeData> data;
     QMap<QString, qint64> TypeList;
     getFileType(path, TypeList);
     auto SumSize = FileSize::getSumSize(TypeList);
     auto percent = getTypePercent(SumSize, TypeList);
     auto sorting = Sorting(percent);
-    PrintOperator(TypeList, sorting);
+    for (auto x : sorting)
+    {
+        if (x.first == -10)
+        {
+            data.append(SomeData(x.second, QString::number(TypeList.value(x.second)), QString("< 0.01 %")));
+        } else
+        {
+        data.append(SomeData("." + x.second, QString::number(TypeList.value(x.second)), QString::number(x.first, 'f', 2).append(" %")));
+        }
+    }
+    return data;
 }

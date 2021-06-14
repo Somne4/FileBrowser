@@ -10,7 +10,6 @@ private:
     QMap<QString, qint64> getFolderSize(const QString& path);
     QMap<QString, double> getListPercents(qint64& size, QMap<QString, qint64>& FoldersList);
     QList<QPair<double, QString>> Sorting(const QMap<QString, double>& FolderPercent);
-    void PrintOperator(const QMap<QString, qint64>& FolderType, const QList<QPair<double, QString> >& FolderPercent);
 public:
     explicit FolderSize() {};
     virtual ~FolderSize() {};
