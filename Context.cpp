@@ -7,7 +7,8 @@ Context::Context(Browser* strategy) :
 QList<SomeData> Context::Browse(const QString& path)//алгоритм стратегии
 {
     if (b)
-    b->Browse(path);
+        return b->Browse(path);
+    return QList<SomeData>();
 }
 
 void Context::setStrategy(Browser* strategy)
