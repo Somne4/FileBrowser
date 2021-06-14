@@ -18,7 +18,7 @@ private:
     QList<SomeData> dataModel; //Представим данные модели в виде списка.
 public:
     FileBrowserDataModel() = default;
-    FileBrowserDataModel(QObject *parent = nullptr, QList<SomeData> dt = QList<SomeData>());
+    FileBrowserDataModel(const QList<SomeData>& dt, QObject* parent = nullptr);
     void setModel(const QList<SomeData>& dt);
     ~FileBrowserDataModel() = default;
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;

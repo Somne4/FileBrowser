@@ -1,10 +1,11 @@
 #include "FileBrowserDataModel.h"
 
 
-FileBrowserDataModel::FileBrowserDataModel(QObject *parent, QList<SomeData> dt) : QAbstractTableModel(parent)
+FileBrowserDataModel::FileBrowserDataModel(const QList<SomeData> &dt, QObject *parent) : QAbstractTableModel(parent)
 {
     dataModel = dt;
 }
+
 
 void FileBrowserDataModel::setModel(const QList<SomeData> &dt)
 {
