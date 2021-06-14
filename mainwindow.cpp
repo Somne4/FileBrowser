@@ -29,3 +29,30 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::ChoiceStrategy(int index) // изменяется группировка в combobox
+{
+    if (index == 1)
+        p->setStrategy(new TypeSize);
+    else
+        p->setStrategy(new FolderSize);
+
+    data = p->Browse(path);
+    fileModel->setModel(data);
+}
+
+void MainWindow::selectionChangedSlot(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    Q_UNUSED(deselected);
+
+    QModelIndexList indexes = selected.indexes(); // получаем индекс выделенных элементов
+    path = dirModel->filePath(indexes[0]); // вычисляем путь по индексу в моделе
+    if (path.isEmpty())
+        return;
+    if (strategy_ == Strategy::Type)
+        p->setStrategy(new TypeSize);
+    else
+        p->setStrategy(new FolderSize);
+    data = p->Browse(path);
+    fileModel->setModel(data);
+}
+

@@ -36,6 +36,9 @@ private:
     QList<SomeData> data;
     QString path;
     Strategy strategy_;
+public slots:
+    void ChoiceStrategy(int index);
+    void selectionChangedSlot(const QItemSelection& selected, const QItemSelection& deselected);
 };
 
 #endif // MAINWINDOW_H
