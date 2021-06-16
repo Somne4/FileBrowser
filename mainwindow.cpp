@@ -24,14 +24,19 @@ MainWindow::MainWindow(QMainWindow *parent) :
     connect(ui->treeView->selectionModel(), &QItemSelectionModel::selectionChanged, this,  &MainWindow::selectionChangedSlot);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
 void MainWindow::ChoiceStrategy(int index) // изменяется группировка в combobox
 {
-    if (index == 1)
+    switch (index)
+    {
+    case 0:
+        strategy_ = Strategy::Folder;
+        break;
+    case 1:
+        strategy_ = Strategy::Type;
+        break;
+    }
+
+    if (strategy_ == Strategy::Type)
         p->setStrategy(new TypeSize);
     else
         p->setStrategy(new FolderSize);
@@ -56,3 +61,10 @@ void MainWindow::selectionChangedSlot(const QItemSelection &selected, const QIte
     fileModel->setModel(data);
 }
 
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete p;
+    delete dirModel;
+    delete fileModel;
+}
