@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>999</width>
-    <height>571</height>
+    <width>1053</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,71 +17,58 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>651</width>
-      <height>51</height>
+      <x>20</x>
+      <y>20</y>
+      <width>1011</width>
+      <height>571</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="0">
+      <widget class="QTreeView" name="treeView"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QTableView" name="tableView"/>
+     </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Action:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>688</width>
-         <height>17</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="2">
-      <widget class="QComboBox" name="comboBox">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <property name="text">
-         <string>Group by folder</string>
-        </property>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
-        <property name="text">
-         <string>Group by type</string>
-        </property>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Action:</string>
+         </property>
+        </widget>
        </item>
-      </widget>
+       <item>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>Group by folder</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Group by type</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
-   </widget>
-   <widget class="QTreeView" name="treeView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>501</width>
-      <height>481</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>70</y>
-      <width>461</width>
-      <height>481</height>
-     </rect>
-    </property>
    </widget>
   </widget>
  </widget>
