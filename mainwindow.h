@@ -11,6 +11,8 @@
 #include <QDebug>
 #include "FolderSize.h"
 #include "TypeSize.h"
+#include "Adapter.h"
+#include "AdapterTable.h"
 
 namespace Ui
 {
@@ -21,24 +23,24 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    enum class Strategy
-    {
-        Folder,
-        Type
-    };
     explicit MainWindow(QMainWindow *parent = nullptr);
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
     QFileSystemModel* dirModel;
     FileBrowserDataModel* fileModel;
-    Context* p;
-    QList<SomeData> data;
-    QString path;
-    Strategy strategy_;
+    QString path;   
+    Browser* Folders;
+    Browser* Types;
+    Browser* Grouping;
+    FileObserver* View;
+    FileObserver* TableAdapter;
+    FileObserver* bar;
+    FileObserver* pie;
 public slots:
     void ChoiceStrategy(int index);
     void selectionChangedSlot(const QItemSelection& selected, const QItemSelection& deselected);
+    void selectionDisplay(int index);
 };
 
 #endif // MAINWINDOW_H
