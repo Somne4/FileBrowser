@@ -56,7 +56,7 @@ QList<QPair<double, QString>> TypeSize::Sorting(const QMap<QString, double>& Typ
     return res;
 }
 
-QList<SomeData> TypeSize::Browse(const QString& path)
+void TypeSize::Browse(const QString& path)
 {
     QList<SomeData> data;
     QMap<QString, qint64> TypeList;
@@ -68,11 +68,11 @@ QList<SomeData> TypeSize::Browse(const QString& path)
     {
         if (x.first == -10)
         {
-            data.append(SomeData(x.second, QString::number(TypeList.value(x.second)), QString("< 0.01 %")));
+            data.append(SomeData(x.second, QString::number(TypeList.value(x.second)), QString("< 0.01 %"), (qreal)TypeList.value(x.second)/ SumSize));
         } else
         {
-        data.append(SomeData("." + x.second, QString::number(TypeList.value(x.second)), QString::number(x.first, 'f', 2).append(" %")));
+        data.append(SomeData("." + x.second, QString::number(TypeList.value(x.second)), QString::number(x.first, 'f', 2).append(" %"), (qreal)TypeList.value(x.second)/ SumSize));
         }
     }
-    return data;
+    OnFinish(QList<SomeData>(data));
 }

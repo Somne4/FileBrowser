@@ -13,7 +13,7 @@ private:
 public:
     explicit FolderSize() {};
     virtual ~FolderSize() {};
-    QList<SomeData> Browse(const QString& path) override;
+    void Browse(const QString& path) override;
 };
 
 #endif // FOLDERSIZE_H

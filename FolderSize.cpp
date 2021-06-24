@@ -58,7 +58,7 @@ QList<QPair<double, QString>> FolderSize::Sorting(const QMap<QString, double>& F
 }
 
 
-QList<SomeData> FolderSize::Browse(const QString& path)
+void FolderSize::Browse(const QString& path)
 {
     QList<SomeData> data;
     auto FolderList = getFolderSize(path);
@@ -69,13 +69,14 @@ QList<SomeData> FolderSize::Browse(const QString& path)
     {
         if (x.first == -10)
         {
-            data.append(SomeData(x.second, QString::number(FolderList.value(x.second)), QString("< 0.01 %")));
+            data.append(SomeData(x.second, QString::number(FolderList.value(x.second)), QString("< 0.01 %"), (qreal)FolderList.value(x.second)/ SumSize));
         } else
         {
-            data.append(SomeData(x.second, QString::number(FolderList.value(x.second)), QString::number(x.first, 'f', 2).append(" %")));
+            data.append(SomeData(x.second, QString::number(FolderList.value(x.second)), QString::number(x.first, 'f', 2).append(" %"), (qreal)FolderList.value(x.second)/ SumSize));
         }
     }
-    return data;
+    OnFinish(QList<SomeData>(data));
+
 }
 
 
