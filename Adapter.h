@@ -27,9 +27,8 @@ public:
     ChartAdapter(QLayout* layout);
 
     void setChart(QList<SomeData>& dt) const;
-
     void addWidget(QLayout* layout); // Добавление к layout'у
-    void Update(const QList<SomeData>& dt) const; // Сигнал передает при завершении формирования данных
+    void Update(QList<SomeData>& dt) const; // Сигнал передает при завершении формирования данных
     void setData(const QList<SomeData>& dt) const; // Данные в график
     void DeleteSeries(QChart* chart) const; // Данные из графика
     void addSeries(QAbstractSeries* series) const;
