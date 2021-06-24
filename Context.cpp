@@ -13,8 +13,12 @@ QList<SomeData> Context::Browse(const QString& path)//алгоритм стра�
 
 void Context::setStrategy(Browser* strategy)
 {
+    if (b)
+        delete b;
     b = strategy;
 }
 
 Context::~Context()
-{}
+{
+    delete b;
+}
