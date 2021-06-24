@@ -1,4 +1,4 @@
-QT += core gui
+QT += core gui charts
 QT += widgets
 
 CONFIG += c++11 console
@@ -9,6 +9,8 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Adapter.cpp \
+        AdapterTable.cpp \
         Context.cpp \
         FileBrowserDataModel.cpp \
         FileSize.cpp \
@@ -23,11 +25,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    Adapter.h \
+    AdapterTable.h \
     Browser.h \
     Context.h \
     FileBrowserDataModel.h \
     FileSize.h \
     FolderSize.h \
+    SomeData.h \
     TypeSize.h \
     mainwindow.h
 

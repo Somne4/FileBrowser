@@ -4,11 +4,9 @@ Context::Context(Browser* strategy) :
     b(strategy) {}
 
 
-QList<SomeData> Context::Browse(const QString& path)//алгоритм стратегии
+void Context::Browse(const QString& path)//алгоритм стратегии
 {
-    if (b)
-        return b->Browse(path);
-    return QList<SomeData>();
+    b->Browse(path);
 }
 
 void Context::setStrategy(Browser* strategy)
@@ -20,5 +18,6 @@ void Context::setStrategy(Browser* strategy)
 
 Context::~Context()
 {
-    delete b;
+    if (b)
+        delete b;
 }

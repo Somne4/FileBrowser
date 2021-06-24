@@ -10,7 +10,7 @@ public:
     Context() = default;
     explicit Context(Browser* strategy);
     ~Context();
-    QList<SomeData> Browse(const QString& path);
+    void Browse(const QString& path);
     void setStrategy(Browser* strategy);
 };
 

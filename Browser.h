@@ -5,33 +5,26 @@
 #include <QTextStream>
 #include <QString>
 #include <QVector>
-#include "Observer.h"
+#include "SomeData.h"
 
-class SomeData
+class FileObserver
 {
 public:
-SomeData(const QString nm, const QString sz, const QString prc, qreal sh)
-{
-    name = nm;
-    size = sz;
-    percent = prc;
-    share = sh;
-}
-QString name;
-QString size;
-QString percent;
-qreal share;
+    FileObserver() {}
+    virtual void Update(QList<SomeData> dt) const = 0;
+    virtual ~FileObserver() = default;
 };
+
 
 class Browser
 {
 private:
-    Observer* obs;
+    FileObserver* observer;
 public:
-    virtual QList<SomeData> Browse(const QString& path) = 0;
+    virtual void Browse(const QString& path) = 0;
     virtual ~Browser() {}
 
-    void Attach(Observer* obs)
+    void Attach(FileObserver* obs)
     {
         if (obs)
             observer = obs;

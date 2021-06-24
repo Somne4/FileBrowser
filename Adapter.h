@@ -5,7 +5,6 @@
 #include <QtCharts/QChartGlobal>
 #include <memory>
 #include <QtCharts/QAbstractSeries>
-#include "Observer.h"
 #include <QBarSeries>
 #include <QPieSeries>
 #include <QBarSet>
@@ -16,7 +15,7 @@
 
 using namespace QtCharts;
 
-class ChartAdapter : public Observer
+class ChartAdapter : public FileObserver
 {
 private:
     QChartView* view;
@@ -26,13 +25,13 @@ public:
     virtual ~ChartAdapter();
     ChartAdapter(QLayout* layout);
 
-    void setChart(QList<SomeData>& dt) const;
+    void setChart(QList<SomeData> dt) const;
     void addWidget(QLayout* layout); // Добавление к layout'у
-    void Update(QList<SomeData>& dt) const; // Сигнал передает при завершении формирования данных
-    void setData(const QList<SomeData>& dt) const; // Данные в график
+    void Update(QList<SomeData> dt) const; // Сигнал передает при завершении формирования данных
+    void setData(QList<SomeData> dt) const; // Данные в график
     void DeleteSeries(QChart* chart) const; // Данные из графика
     void addSeries(QAbstractSeries* series) const;
-    virtual QAbstractSeries* addData(const QList<SomeData>& dt) const = 0;
+    virtual QAbstractSeries* addData( QList<SomeData> dt) const = 0;
 };
 
 class PieChart : public ChartAdapter
@@ -40,7 +39,7 @@ class PieChart : public ChartAdapter
 public:
     explicit PieChart(QLayout* layout);
     PieChart() = default;
-    QAbstractSeries * addDataToSeries(const QList<SomeData>& dt) const;
+    QAbstractSeries * addData(QList<SomeData> dt) const;
 };
 
 class BarChart : public ChartAdapter
@@ -48,7 +47,7 @@ class BarChart : public ChartAdapter
 public:
     explicit BarChart(QLayout* layout);
     BarChart() = default;
-    QAbstractSeries * addDataToSeries(const QList<SomeData>& dta) const;
+    QAbstractSeries * addData(QList<SomeData> dta) const;
 };
 
 #endif // ADAPTER_H

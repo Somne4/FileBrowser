@@ -1,7 +1,5 @@
 ﻿#include "Adapter.h"
 
-ChartAdapter::ChartAdapter() {}
-
 ChartAdapter::~ChartAdapter()
 {
     delete view;
@@ -15,7 +13,7 @@ ChartAdapter::ChartAdapter(QLayout *layout)
     addWidget(layout);
 }
 
-void ChartAdapter::setChart(QList<SomeData>& dt) const
+void ChartAdapter::setChart(QList<SomeData> dt) const
 {
     qint64 size = 0;
     for (auto x : dt)
@@ -53,7 +51,7 @@ void ChartAdapter::addWidget(QLayout *layout)
     layout->addWidget(view);
 }
 
-void ChartAdapter::Update(QList<SomeData> &dt) const
+void ChartAdapter::Update(QList<SomeData> dt) const
 {
     setChart(dt);
 }
@@ -68,7 +66,7 @@ void ChartAdapter::addSeries(QAbstractSeries *series) const
     model->addSeries(series);
 }
 
-void ChartAdapter::setData(const QList<SomeData> &dt) const
+void ChartAdapter::setData(QList<SomeData> dt) const
 {
     DeleteSeries(model);
     QAbstractSeries* series = addData(dt);
@@ -78,7 +76,7 @@ void ChartAdapter::setData(const QList<SomeData> &dt) const
 BarChart::BarChart(QLayout *layout) : ChartAdapter(layout) {}
 
 
-QAbstractSeries *BarChart::addDataToSeries(const QList<SomeData> &dt) const
+QAbstractSeries *BarChart::addData(QList<SomeData> dt) const
 {
     QBarSeries* series = new QBarSeries();
     for (auto item : dt)
@@ -92,7 +90,7 @@ QAbstractSeries *BarChart::addDataToSeries(const QList<SomeData> &dt) const
 
 PieChart::PieChart(QLayout *layout) : ChartAdapter(layout) {}
 
-QAbstractSeries *PieChart::addDataToSeries(const QList<SomeData> &dt) const
+QAbstractSeries *PieChart::addData(QList<SomeData> dt) const
 {
     QPieSeries* series = new QPieSeries();
     for (auto item : dt)
